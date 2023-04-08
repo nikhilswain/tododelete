@@ -12,7 +12,7 @@ export default function App() {
     >
       <SectionFlex />
       {/* <ScrollAnimation /> */}
-      <HorizontalScroll />
+      {/* <HorizontalScroll /> */}
     </Box>
   );
 }

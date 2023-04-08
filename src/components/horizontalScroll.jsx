@@ -10,31 +10,35 @@ import { Carousel } from '@mantine/carousel';
 
 const HorizontalScroll = () => {
   const carouselRef = useRef(null);
-
   const handleWheel = useCallback(
     (e) => {
+      const { deltaY } = e;
       if (carouselRef.current) {
-        const { deltaX } = e;
-        if (deltaX < 0) {
-          carouselRef.current.onNextSlide();
-        } else if (deltaX > 0) {
-          carouselRef.current.onPreviousSlide();
+        const {
+          carouselRef: { current: carousel },
+        } = carouselRef;
+        if (deltaY > 0) {
+          carousel.current.onPreviousSlide();
+        } else if (deltaY < 0) {
+          carousel.current.onNextSlide();
         }
       }
     },
     [carouselRef]
   );
 
-  useEffect(() => {
-    const element = carouselRef.current;
-    if (element) {
-      element.addEventListener('wheel', handleWheel, { passive: false });
+  // useEffect(() => {
+  //   if (carouselRef.current) {
+  //     const carouselNode = carouselRef.current;
+  //     carouselNode.addEventListener('wheel', handleWheel, {
+  //       passive: false,
+  //     });
+  //     return () => {
+  //       carouselNode.removeEventListener('wheel', handleWheel);
+  //     };
+  //   }
+  // }, [carouselRef, handleWheel]);
 
-      return () => {
-        element.removeEventListener('wheel', handleWheel);
-      };
-    }
-  }, [handleWheel]);
   return (
     <>
       <Box sx={{ height: '50vh', width: '100vw' }}></Box>
@@ -58,7 +62,17 @@ const HorizontalScroll = () => {
       </Box>
       <Box onWheel={handleWheel}>
         <Carousel
-          {...handleWheel}
+          onNextSlide={() => {
+            if (carouselRef.current) {
+              carouselRef.current.next();
+            }
+          }}
+          onPreviousSlide={() => {
+            if (carouselRef.current) {
+              carouselRef.current.prev();
+            }
+          }}
+          // onWheel={handleWheel}
           ref={carouselRef}
           height={300}
           slideSize='70%'
