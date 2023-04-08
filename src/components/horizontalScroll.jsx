@@ -40,8 +40,7 @@ const HorizontalScroll = () => {
   // }, [carouselRef, handleWheel]);
 
   return (
-    <>
-      <Box sx={{ height: '50vh', width: '100vw' }}></Box>
+    <Box py={10}>
       <Box className=' rowOneheaderBox' sx={{ width: '85%', height: 'calc(25.34722*1vw)' }} p={'2rem'}>
         <Title
           order={1}
@@ -376,8 +375,7 @@ const HorizontalScroll = () => {
           </Carousel.Slide>
         </Carousel>
       </Box>
-      <Box sx={{ height: '50vh', width: '100vw' }}></Box>
-    </>
+    </Box>
   );
 };
 
