@@ -1,0 +1,98 @@
+.boxChildWrapper,
+.boxContentWrapper,
+.box-withshadow {
+  transition: all 0.3s ease-in-out;
+}
+.boxChildWrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.box:hover .boxChildWrapper {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.box:hover .boxContent {
+  opacity: 1;
+  transition: all 1.2s ease-in-out;
+}
+
+.box:hover .boxContentWrapper {
+  transform: translateY(-25px);
+}
+
+.box-withripple::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: rgba(153, 204, 255, 0.2);
+  background-clip: content-box;
+  transition: all 0.5s ease-in-out;
+}
+
+.box-withripple:hover::after {
+  width: 300%;
+  height: 300%;
+  background-color: #fff;
+  opacity: 0.2;
+}
+
+.box-withshadow:hover {
+  box-shadow: rgba(153, 204, 255, 0.25) 0px 20px 50px 0px;
+}
+
+.title {
+  font-weight: 400;
+  color: #001b5d;
+  font-size: calc(1.875 * 1vw);
+}
+
+.boxContent {
+  font-size: calc(1.04167 * 1vw);
+}
+
+@media screen and (max-width: 640px) {
+  .flexRowOne {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .flexResonponsive {
+    justify-content: center;
+  }
+  .flexResonponsive .box {
+    width: 33%;
+  }
+
+  .flexRowTwo {
+    justify-content: space-evenly;
+    height: auto;
+  }
+
+  .rowOneheaderBox {
+    width: 100%;
+    padding: 2rem;
+    height: auto;
+  }
+
+  .headerBoxTitle {
+    font-size: 1.4rem;
+    padding: 0 2rem;
+  }
+
+  .headerBoxContent {
+    font-size: .5rem;
+    padding: 0 2rem;
+  }
+}
+
